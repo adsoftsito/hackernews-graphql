@@ -32,7 +32,7 @@ class AnExampleTest(TestCase):
         print ("mutation ")
         print (result.data)
 
-        self.assertDictEqual({"createLink": {"id": 1}}, result.data)
+        self.assertDictEqual({"createLink": {"id": 2}}, result.data)
 
 
     def test_query_link(self):
