@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 **/*.pyc
+=======
+# ignore pyc
+>>>>>>> master
 *.pyc
+**/*.pyc
