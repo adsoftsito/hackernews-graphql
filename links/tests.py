@@ -3,43 +3,41 @@ from django.test import TestCase
 # Create your tests here.
 from links.schema import Query
 from links.schema import Mutation
-
-#from django.test.testcases import TestCase
 import graphene
 
-class AnExampleTest(TestCase):
+class LinkTest(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.query = """
+        self.queryLink = """
             query {
               links {
                 id
               }
             }
         """
-        self.mutation = """
+        self.mutationLink = """
             mutation {
               createLink(description:"google", url:"google") {
                 id
               }
             }
         """
-    def test_mutation_link(self):
+    def testMutationLink(self):
         schema = graphene.Schema(mutation=Mutation)
-        result = schema.execute(self.mutation)
+        result = schema.execute(self.mutationLink)
         self.assertIsNone(result.errors)
-        print ("mutation ")
+        print ("mutation link results ")
         print (result.data)
 
-        self.assertDictEqual({"createLink": {"id": 2}}, result.data)
+        self.assertDictEqual({"createLink": {"id": 1}}, result.data)
 
 
-    def test_query_link(self):
+    def testQueryLink(self):
         schema = graphene.Schema(query=Query)
-        result = schema.execute(self.query)
+        result = schema.execute(self.queryLink)
         self.assertIsNone(result.errors)
-        print ("query ")
+        print ("query link results ")
         print (result.data)
         self.assertDictEqual({"links": []}, result.data)
 
