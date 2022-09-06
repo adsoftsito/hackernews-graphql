@@ -6,9 +6,11 @@ from links.schema import Mutation
 import graphene
 
 class LinkTest(TestCase):
+    fixtures = ["fixture1.json"]
 
     def setUp(self):
         super().setUp()
+
         self.queryLink = """
             query {
               links {
@@ -19,7 +21,7 @@ class LinkTest(TestCase):
         self.mutationLink = """
             mutation {
               createLink(description:"google", url:"google") {
-                id
+                description
               }
             }
         """
@@ -30,7 +32,7 @@ class LinkTest(TestCase):
         print ("mutation link results ")
         print (result.data)
 
-        self.assertDictEqual({"createLink": {"id": 1}}, result.data)
+        self.assertDictEqual({"createLink": {"description": "google"}}, result.data)
 
 
     def testQueryLink(self):
@@ -39,7 +41,7 @@ class LinkTest(TestCase):
         self.assertIsNone(result.errors)
         print ("query link results ")
         print (result.data)
-        self.assertDictEqual({"links": []}, result.data)
+        self.assertDictEqual({"links": [{'id': '1'}] }, result.data)
 
 
 #import json
