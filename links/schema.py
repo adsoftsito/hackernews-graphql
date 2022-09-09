@@ -53,3 +53,6 @@ class CreateLink(graphene.Mutation):
 #4
 class Mutation(graphene.ObjectType):
     create_link = CreateLink.Field()
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
+
