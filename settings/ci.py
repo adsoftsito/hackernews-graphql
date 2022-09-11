@@ -12,18 +12,21 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, 'fixtures'),
-]
+
+#FIXTURE_DIRS = [
+#    os.path.join(BASE_DIR, 'fixtures'),
+#]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4!-ique=ei8e^8@glxem85^suq^4fjw-q=1o=pei&qu&39qdv8'
+
+SECRET_KEY = config("TEST_SECRET_KEY", default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,17 +81,21 @@ WSGI_APPLICATION = 'hackernews.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+TEST_DATABASE = config("TEST_DATABASE", default='')
+TEST_USER = config("TEST_USER", default='')
+TEST_PASSWORD = config("TEST_PASSWORD", default='')
+TEST_HOST = config("TEST_HOST", default='')
+TEST_PORT = config("TEST_PORT", default=5432)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'aisqqjsn',
-        'USER': 'aisqqjsn',
-        'PASSWORD': 'W-ROcLb_vF2ZI3t6iOdd96DISjUalvsw',
-        'HOST': 'jelani.db.elephantsql.com',
-        'PORT': '5432',
+        'NAME': TEST_DATABASE,
+        'USER': TEST_USER,
+        'PASSWORD': TEST_PASSWORD,
+        'HOST': TEST_HOST,
+        'PORT': TEST_PORT,
         'TEST': {
-            'NAME': 'aisqqjsn',
+            'NAME': TEST_DATABASE,
         },
     },
 }
@@ -143,3 +150,4 @@ AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
