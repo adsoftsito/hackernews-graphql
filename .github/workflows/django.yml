@@ -28,8 +28,14 @@ jobs:
     - name: Make envfile
       uses: SpicyPizza/create-envfile@v1.3
       with:
-        envkey_DEBUG: false
-        envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        envkey_SECRET_KEY: 'i-love-adsoft'
+        envkey_TEST_SECRET_KEY : 'i-love-adsoftsito' 
+        envkey_TEST_DATABASE : 'aisqqjsn' 
+        envkey_TEST_USER : 'aisqqjsn' 
+        envkey_TEST_PASSWORD : 'W-ROcLb_vF2ZI3t6iOdd96DISjUalvsw' 
+        envkey_TEST_HOST : 'jelani.db.elephantsql.com' 
+        envkey_TEST_PORT : 5432      
+        
         file_name: .env
         fail_on_empty: false
     - name: Run Tests
