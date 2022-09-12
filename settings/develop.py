@@ -12,18 +12,21 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, 'fixtures'),
-]
+
+#FIXTURE_DIRS = [
+#    os.path.join(BASE_DIR, 'fixtures'),
+#]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4!-ique=ei8e^8@glxem85^suq^4fjw-q=1o=pei&qu&39qdv8'
+
+SECRET_KEY = config("DEV_SECRET_KEY", default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,24 +81,23 @@ WSGI_APPLICATION = 'hackernews.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+DEV_DATABASE = config("DEV_DATABASE", default='')
+DEV_USER = config("DEV_USER", default='')
+DEV_PASSWORD = config("DEV_PASSWORD", default='')
+DEV_HOST = config("DEV_HOST", default='')
+DEV_PORT = config("DEV_PORT", default=5432)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hackernews',
-        'USER': 'm',
-        'PASSWORD': 'adsoft',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': DEV_DATABASE,
+        'USER': DEV_USER,
+        'PASSWORD': DEV_PASSWORD,
+        'HOST': DEV_HOST,
+        'PORT': DEV_PORT,
+        #'TEST': {
+        #    'NAME': TEST_DATABASE,
+        #},
     },
-    'test': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hackernews',
-        'USER': 'm',
-        'PASSWORD': 'adsoft',
-        'HOST': '34.12.12.10',
-        'PORT': '5432',
-    }
 }
 
 
@@ -148,3 +150,4 @@ AUTHENTICATION_BACKENDS = [
     'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+

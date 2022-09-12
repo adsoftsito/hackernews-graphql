@@ -44,7 +44,7 @@ class LinkTestCase(GraphQLTestCase):
         self.assertResponseNoErrors(response)
         print ("query link results ")
         print (content)
-        assert len(content['data']['links']) == 4
+        assert len(content['data']['links']) == 2
 
         #self.assertDictEqual({"links": [{'id': '1'}] }, content['data'])
 
