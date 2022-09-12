@@ -29,7 +29,7 @@ jobs:
       uses: SpicyPizza/create-envfile@v1.3
       with:
         envkey_TEST_SECRET_KEY : ${{ secrets.TEST_SECRET_KEY }}
-        envkey_TEST_DATABASE : 'aisqqjsn' 
+        envkey_TEST_DATABASE : ${{ secrets.TEST_DATABASE }}
         envkey_TEST_USER : 'aisqqjsn' 
         envkey_TEST_PASSWORD : 'W-ROcLb_vF2ZI3t6iOdd96DISjUalvsw' 
         envkey_TEST_HOST : 'jelani.db.elephantsql.com' 
