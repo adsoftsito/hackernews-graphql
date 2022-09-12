@@ -27,7 +27,6 @@ CREATE_LINK_MUTATION = '''
 
 class LinkTestCase(GraphQLTestCase):
     GRAPHQL_SCHEMA = schema
-    #fixtures = ["fixture1.json"]
     def setUp(self):
         self.link1 = mixer.blend(Link)
         self.link2 = mixer.blend(Link)
@@ -46,7 +45,6 @@ class LinkTestCase(GraphQLTestCase):
         print (content)
         assert len(content['data']['links']) == 2
 
-        #self.assertDictEqual({"links": [{'id': '1'}] }, content['data'])
 
     def test_createLink_mutation(self):
 
