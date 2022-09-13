@@ -20,13 +20,22 @@ jobs:
     steps:
     - name: Deploy using ssh
       #uses: appleboy/ssh-action@master
-      uses: appleboy/ssh-action@v0.1.4
+      #uses: appleboy/ssh-action@v0.1.4
 
+      #with:
+      #  host: ${{ secrets.HOST }}
+      #  username: ${{ secrets.USERNAME }}
+      #  key: ${{ secrets.PRIVATE_KEY }}
+      #  port: 22
+      #  script: |
+      #    cd /home/hadoop/
+      #    ls
+
+      uses: fifsky/ssh-action@master
       with:
+        command: |
+          cd /home/hadoop
+          ls -a
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd /home/hadoop/
-          ls
+        user: hadoop
+        key: ${{ secrets.PRIVATE_KEY}}
