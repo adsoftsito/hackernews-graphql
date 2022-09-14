@@ -29,7 +29,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Make envfile
+    - name: make .env 
       uses: SpicyPizza/create-envfile@v1.3
       with:
         envkey_TEST_SECRET_KEY : ${{ secrets.TEST_SECRET_KEY }}
@@ -42,13 +42,12 @@ jobs:
         fail_on_empty: false
     - name: Run Tests
       run: |
-        python manage.py test --settings=settings.local -v 3 --keepdb
+        python manage.py test --settings=settings.ci -v 3 --keepdb
 
   deploy:
     needs: test 
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Deploy using ssh
       uses: fifsky/ssh-action@master
