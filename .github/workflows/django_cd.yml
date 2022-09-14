@@ -35,7 +35,7 @@ jobs:
       with:
         command: |
           cd /home/hadoop
-          ls -a
+          pwd
         host: ${{ secrets.HOST }}
         user: hadoop
         key: ${{ secrets.PRIVATE_KEY}}
