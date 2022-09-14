@@ -34,10 +34,9 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
         command: |
-          cd /home/hadoop
+          cd /home/${{ secrets.USERNAME }}
           pwd
           ls
         host: ${{ secrets.HOST }}
-        user: hadoop
-        pass: hadoop
+        user: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY}}
