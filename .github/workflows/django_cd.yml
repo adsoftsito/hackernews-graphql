@@ -38,6 +38,6 @@ jobs:
           pwd
           ls
         host: ${{ secrets.HOST }}
-        user: cd
+        user: hadoop
         pass: hadoop
         key: ${{ secrets.PRIVATE_KEY}}
