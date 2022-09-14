@@ -1,5 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-name: Django CD
+# 
+name: Django CI/CD
 
 # Controls when the action will run. 
 on:
@@ -11,20 +11,51 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: make .env 
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        envkey_TEST_SECRET_KEY : ${{ secrets.TEST_SECRET_KEY }}
+        envkey_TEST_DATABASE : ${{ secrets.TEST_DATABASE }}
+        envkey_TEST_USER : ${{ secrets.TEST_USER }}
+        envkey_TEST_PASSWORD : ${{ secrets.TEST_PASSWORD }}
+        envkey_TEST_HOST : ${{ secrets.TEST_HOST }}
+        envkey_TEST_PORT : ${{ secrets.TEST_PORT }}     
+        file_name: .env
+        fail_on_empty: false
+    - name: Run Tests
+      run: |
+        python manage.py test --settings=settings.ci -v 3 --keepdb
+
+  deploy:
+    needs: test 
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Deploy using ssh
-      uses: appleboy/ssh-action@master
+      uses: fifsky/ssh-action@master
       with:
+        command: |
+          cd /home/${{ secrets.USERNAME }}
+          pwd
+          ls
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        port: 22
-        script: |
-          cd ~/home/danielwetan/apps/node1
-          git pull origin master
+        user: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY}}
