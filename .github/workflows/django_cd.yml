@@ -1,5 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-name: Django CD
+# 
+name: Django CI/CD
 
 # Controls when the action will run. 
 on:
@@ -42,7 +42,7 @@ jobs:
         fail_on_empty: false
     - name: Run Tests
       run: |
-        python manage.py test --settings=settings.ci -v 3 --keepdb
+        python manage.py test --settings=settings.local -v 3 --keepdb
 
   deploy:
     needs: test 
