@@ -81,7 +81,7 @@ jobs:
         buildargs: ${{ secrets.BUILD }}
         global: true
     - name: Get Kubeconfig
-      uses: okteto/actions/namespace@latest
+      uses: okteto/actions/namespace@v2
       id: namespace
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
