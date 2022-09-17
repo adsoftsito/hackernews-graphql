@@ -77,8 +77,8 @@ jobs:
     - name: "Build"
       uses: okteto/build@latest
       with:
-        tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api:${{ github.sha }}
-        args: -t
+        tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
+        flag: -t
     - name: Get Kubeconfig
       uses: okteto/actions/namespace@v1
       id: namespace
