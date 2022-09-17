@@ -62,7 +62,7 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Build image
+    #- name: Build image
     #  uses: okteto/actions/build@v1
     #  with:
     #    token: ${{ secrets.OKTETO_TOKEN }}
