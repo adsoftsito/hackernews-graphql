@@ -78,7 +78,7 @@ jobs:
       uses: okteto/build@latest
       with:
         tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
-        flag: -t
+        buildargs: -t
     - name: Get Kubeconfig
       uses: okteto/actions/namespace@v1
       id: namespace
