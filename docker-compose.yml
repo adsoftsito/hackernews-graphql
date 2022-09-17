@@ -7,7 +7,7 @@ services:
     command: python manage.py runserver --setting=settings.develop 0.0.0.0:8080
     volumes:
     - .:/hackernews
-    ports:
-    - "8100:8080"
+    #ports:
+    #- "8100:8080"
     env_file:
       - .env
