@@ -13,7 +13,7 @@ spec:
         app: adsoftsito
     spec:
       containers:
-      - image: adsoft/hackernews:latest
+      - image: adsoft/graphql-api:latest
         name: adsoftsito
 
 ---
