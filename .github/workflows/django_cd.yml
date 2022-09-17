@@ -63,7 +63,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
-      uses: okteto/actions/build@v1
+      uses: okteto/actions/build@master
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
         tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api:${{ github.sha }}
