@@ -71,7 +71,7 @@ jobs:
     - uses: okteto/context@latest
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
-        #tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api:${{ github.sha }}
+        #tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
         args: -t
 
     - name: "Build"
@@ -86,3 +86,13 @@ jobs:
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
         namespace: adsoftsito
+        
+    - name: Deploy and Wait
+      uses: okteto/actions/deploy@v1
+      env:
+        KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
+      with:
+        namespace: adsoftsito
+        manifest: k8s.yml
+        tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
+        waitOn: deployment/hackernews
