@@ -94,5 +94,5 @@ jobs:
       with:
         namespace: adsoftsito
         manifest: k8s.yml
-        tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
+        tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api
         waitOn: deployment/hackernews
