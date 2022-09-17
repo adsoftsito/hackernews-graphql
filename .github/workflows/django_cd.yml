@@ -71,7 +71,8 @@ jobs:
     - uses: okteto/context@latest
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
-    
+        tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api:${{ github.sha }}
+  
     - name: "Build"
       uses: okteto/build@latest
         
