@@ -1,7 +1,8 @@
 version: '3'
 services:
   adsoft-dev:
-    build: . -t
+    build: . 
+    args: -t
     image: adsoft/graphql-api
     container_name: adsoft-graphql-dev
     command: python manage.py runserver --setting=settings.develop 0.0.0.0:8080
