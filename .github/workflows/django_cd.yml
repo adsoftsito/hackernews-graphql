@@ -1,13 +1,13 @@
 # 
-name: Django CI/CD
+name: master - Okteto CI/CD
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master, release ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, release ]
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -44,18 +44,21 @@ jobs:
       run: |
         python manage.py test --settings=settings.ci -v 3 --keepdb
 
-  deploy:
-    needs: test 
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Deploy using ssh
-      uses: fifsky/ssh-action@master
-      with:
-        command: |
-          cd /home/${{ secrets.USERNAME }}
-          pwd
-          ls
-        host: ${{ secrets.HOST }}
-        user: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY}}
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+  
+    - name: Login
+      uses: actions-hub/docker/login@master
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
