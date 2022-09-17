@@ -44,18 +44,18 @@ jobs:
   #    run: |
   #      python manage.py test --settings=settings.ci -v 3 --keepdb
 
-  build:
+  setup:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+ #   - name: Run a one-line script
+ #     run: echo Hello, world!
+ #   - name: Run a multi-line script
+ #     run: |
+ #       echo Add other actions to build,
+ #       echo test, and deploy your project.
   
     - name: Login
       uses: actions-hub/docker/login@master
@@ -63,8 +63,8 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
-      #uses: okteto/actions/build@v1
-      uses: actions-hub/docker/build@master
+      uses: okteto/actions/build@v1
+      #uses: actions-hub/docker/build@master
 
       with:
         #token: ${{ secrets.OKTETO_TOKEN }}
