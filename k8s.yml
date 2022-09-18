@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: adsoft-dev
+  name: adsoftsito
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: adsoft-dev
+      app: adsoftsito
   template:
     metadata:
       labels:
-        app: adsoft-dev
+        app: adsoftsito
     spec:
       containers:
       - image: adsoft/graphql-api:latest
-        name: adsoft-dev
+        name: adsoftsito
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: adsoft-dev
+  name: adsoftsito
   annotations:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
   ports:
-  - name: "adsoft-dev"
+  - name: "adsoftsito"
     port: 8080
   selector:
-    app: adsoft-dev
+    app: adsoftsito
