@@ -20,7 +20,7 @@ spec:
             name: adsoftsito-config
         livenessProbe:
           httpGet:
-            path: /
+            path: /ht/
             port: 8080
           initialDelaySeconds: 5
           periodSeconds: 5

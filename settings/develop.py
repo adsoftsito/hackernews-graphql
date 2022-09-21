@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'health_check',   
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
