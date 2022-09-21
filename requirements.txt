@@ -8,3 +8,4 @@ django-cors-headers==3.5.0
 coverage
 mixer
 python-decouple
+django-health-check
