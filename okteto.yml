@@ -1,0 +1,12 @@
+build:
+  adsoftsito:
+    image: okteto.dev/adsoftsito:latest
+
+deploy:
+  - okteto build
+  - kubectl apply -f manifests
+dev:
+  adsoftsito:
+    sync:
+    - .:/hackernews
+    

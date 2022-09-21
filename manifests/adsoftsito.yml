@@ -13,8 +13,11 @@ spec:
         app: adsoftsito
     spec:
       containers:
-      - image: adsoft/graphql-api:latest
+      - image: okteto.dev/adsoftsito:latest
         name: adsoftsito
+        envFrom:
+        - configMapRef:
+            name: adsoftsito-config
 
 ---
 
