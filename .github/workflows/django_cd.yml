@@ -50,52 +50,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
- #   - name: Run a one-line script
- #     run: echo Hello, world!
- #   - name: Run a multi-line script
- #     run: |
- #       echo Add other actions to build,
- #       echo test, and deploy your project.
-  
-    - name: Login
-      uses: actions-hub/docker/login@master
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-    #- name: Build image
-    #  uses: okteto/actions/build@v2
-    #  with:
-    #    token: ${{ secrets.OKTETO_TOKEN }}
-    #    tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api:${{ github.sha }}
-        
-    - uses: okteto/context@latest
+    - uses: okteto/context@2.7.0
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
-        #tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
-        args: -t
 
-    - name: "Build"
-      uses: okteto/build@latest
+    - name: Deploy
+      uses: okteto/pipeline@2.7.0
       with:
-        tag: ${{ secrets.DOCKER_USERNAME }}/hackernews:${{ github.sha }}
-        buildargs: ${{ secrets.BUILD }}
-        global: true
-    - name: Get Kubeconfig
-      uses: okteto/actions/namespace@v2
-      id: namespace
-      with:
-        token: ${{ secrets.OKTETO_TOKEN }}
-        namespace: adsoftsito
-        
-    - name: Deploy and Wait
-      uses: okteto/actions/deploy@v1
-      env:
-        KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
-      with:
-        namespace: adsoftsito
-        manifest: k8s.yml
-        tag: ${{ secrets.DOCKER_USERNAME }}/graphql-api:latest
-        waitOn: deployment/adsoftsito
+         timeout: 5m
         
     - name: Verify
       uses: srt32/uptime@master

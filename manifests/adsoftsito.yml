@@ -13,9 +13,17 @@ spec:
         app: adsoftsito
     spec:
       containers:
-      - image: adsoft/graphql-api:latest
+      - image: okteto.dev/adsoftsito:latest
         name: adsoftsito
-
+        envFrom:
+        - configMapRef:
+            name: adsoftsito-config
+        livenessProbe:
+          httpGet:
+            path: /ht/
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
 ---
 
 apiVersion: v1
