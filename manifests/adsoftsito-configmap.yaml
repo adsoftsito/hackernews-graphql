@@ -6,8 +6,8 @@ metadata:
     app: postgres
 data:
   DEV_SECRET_KEY: i-love-adsoftsito-dev
-  DEV_DATABASE: db
-  DEV_USER: admin
-  DEV_PASSWORD: test
-  DEV_HOST: postgres
+  DEV_DATABASE: rqislgfe
+  DEV_USER: rqislgfe
+  DEV_PASSWORD: mRNXd5E166PhaSr2KlJkHpmunLs3zDo
+  DEV_HOST: jelani.db.elephantsql.com
   DEV_PORT: "5432"
