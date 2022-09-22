@@ -60,8 +60,8 @@ jobs:
          name: hackernews-graphql
          timeout: 5m
         
-    - name: Verify
-      uses: srt32/uptime@master
-      with:
-        url-to-hit: "https://adsoftsito-adsoftsito.cloud.okteto.net/graphql/"
-        expected-statuses: "200"        
+#    - name: Verify
+#      uses: srt32/uptime@master
+#      with:
+#        url-to-hit: "https://adsoftsito-adsoftsito.cloud.okteto.net/graphql/"
+#        expected-statuses: "200"        
