@@ -7,7 +7,7 @@ metadata:
 data:
   DEV_SECRET_KEY: i-love-adsoftsito-dev
   DEV_DATABASE: rqislgfe
-  DEV_USER: rqislgfe
+  DEV_USER: {{ secrets.DEV_USER }}
   DEV_PASSWORD: mRNXd5E166PhahSr2KlJkHpmunLs3zDo
   DEV_HOST: jelani.db.elephantsql.com
   DEV_PORT: "5432"
