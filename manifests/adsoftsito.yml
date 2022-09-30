@@ -15,9 +15,9 @@ spec:
       containers:
       - image: okteto.dev/adsoftsito:latest
         name: adsoftsito
-        envFrom:
-        - configMapRef:
-            name: adsoftsito-config
+        #envFrom:
+        #- configMapRef:
+        #    name: adsoftsito-config
         livenessProbe:
           httpGet:
             path: /ht/
