@@ -59,7 +59,8 @@ jobs:
       with:
          name: hackernews-graphql
          timeout: 5m
-        
+         variables: "DEV_USER=rqislgfe"
+
 #    - name: Verify
 #      uses: srt32/uptime@master
 #      with:
