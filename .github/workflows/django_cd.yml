@@ -59,7 +59,7 @@ jobs:
       with:
          name: hackernews-graphql
          timeout: 5m
-         variables: "DEV_USER=${{ secrets.DEV_USER }}"
+         #variables: "DEV_USER=${{ secrets.DEV_USER }}"
 
 #    - name: Verify
 #      uses: srt32/uptime@master
