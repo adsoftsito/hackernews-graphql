@@ -46,15 +46,15 @@ class LinkTestCase(GraphQLTestCase):
         assert len(content['data']['links']) == 2
 
 
-    def test_createLink_mutation(self):
+#    def test_createLink_mutation(self):
 
-        response = self.query(
-            CREATE_LINK_MUTATION,
-            variables={'url': 'https://google.com', 'description': 'google'}
-        )
-        print('mutation ')
-        print(response)
-        content = json.loads(response.content)
-        print(content)
-        self.assertResponseNoErrors(response)
-        self.assertDictEqual({"createLink": {"description": "google"}}, content['data']) 
+#        response = self.query(
+#            CREATE_LINK_MUTATION,
+#            variables={'url': 'https://google.com', 'description': 'google'}
+#        )
+#        print('mutation ')
+#        print(response)
+#        content = json.loads(response.content)
+#        print(content)
+#        self.assertResponseNoErrors(response)
+#        self.assertDictEqual({"createLink": {"description": "google"}}, content['data']) 

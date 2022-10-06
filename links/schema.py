@@ -32,12 +32,12 @@ class CreateLink(graphene.Mutation):
     #3
     def mutate(self, info, url, description):
 
-        #user = info.context.user or None
+        user = info.context.user or None
 
         link = Link(
                 url=url, 
                 description=description,
-        #        posted_by=user
+                posted_by=user
                 )
 
         link.save()  ## insert into links values(url, description)
@@ -46,7 +46,7 @@ class CreateLink(graphene.Mutation):
             id=link.id,
             url=link.url,
             description=link.description,
-        #    posted_by=link.posted_by
+            posted_by=link.posted_by
         )
 
 
